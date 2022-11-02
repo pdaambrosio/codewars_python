@@ -1,6 +1,6 @@
 def add_binary(a: int, b: int) -> str:
     """
-    `Add two numbers and return the result as a binary string.
+    Add two numbers and return the result as a binary string.
     keyword arguments:
     a -- first number
     b -- second number
