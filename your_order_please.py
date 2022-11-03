@@ -6,7 +6,7 @@ def order(sentence: str) -> str:
     words -- list of words in sentence
     returns: sentence with words sorted by number in word
     """
-    words = sentence.split()
+    words: list[str] = sentence.split()
     return ' '.join(sorted(words, key=lambda w: int(''.join(filter(str.isdigit, w)))))
 
 
