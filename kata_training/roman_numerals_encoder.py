@@ -1,4 +1,11 @@
 def solution(n: int) -> str:
+    """
+    It converts an integer to a roman numeral.
+    
+    :param n: int = the number to be converted to a roman numeral
+    :type n: int
+    :return: The roman numeral representation of the given integer.
+    """
     romans = {1000: 'M', 900: 'CM', 500: 'D', 400: 'CD', 100: 'C', 90: 'XC', 50: 'L', 40: 'XL', 10: 'X', 9: 'IX', 5: 'V', 4: 'IV', 1: 'I'}
     result: str = ''
     for key in romans:
