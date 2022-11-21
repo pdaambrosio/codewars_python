@@ -8,7 +8,7 @@ def is_solved(board: list) -> int:
     :param board: list - a list of lists, each of which represents a row of the board
     :type board: list
     """
-    columns = list(zip(*board))
+    columns: list = list(zip(*board))
     rows: list = board 
     diagonals: list = [[board[i][i] for i in range(3)]] + [[board[i][2-i] for i in range(3)]]
     
