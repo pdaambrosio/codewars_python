@@ -21,11 +21,11 @@ def rot13(message: str) -> str:
 
 def main() -> None:
     """Run sample rot13 functions. Do not import."""
-    print(rot13("test"))
-    print(rot13("Test"))
-    print(rot13("Codewars"))
-    print(rot13("Ruby is cool!"))
-    print(rot13("10+2 is twelve."))
+    print(rot13("test")) # grfg
+    print(rot13("Test")) # Grfg
+    print(rot13("Codewars")) # Pbzcnaljf
+    print(rot13("Ruby is cool!")) # Ehol vf pbby!
+    print(rot13("10+2 is twelve.")) # 10+2 vf gjryir.
     
 
 if __name__ == '__main__':

@@ -185,10 +185,10 @@ def divided_by(y: int):
 
 
 def main() -> None:
-    print(seven(times(five())))
-    print(four(plus(nine())))
-    print(eight(minus(three())))
-    print(six(divided_by(two())))
+    print(seven(times(five()))) # 35
+    print(four(plus(nine()))) # 13
+    print(eight(minus(three()))) # 5
+    print(six(divided_by(two()))) # 3
     
 
 if __name__ == '__main__':

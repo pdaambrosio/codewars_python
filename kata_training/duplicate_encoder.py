@@ -14,10 +14,10 @@ def duplicate_encode(word: str) -> str:
 
 def main() -> None:
     """Run sample duplicate_encode functions. Do not import."""
-    print(duplicate_encode('din'))
-    print(duplicate_encode('recede'))
-    print(duplicate_encode('Success'))
-    print(duplicate_encode('(( @'))
+    print(duplicate_encode('din')) # (((
+    print(duplicate_encode('recede')) # ()()()
+    print(duplicate_encode('Success')) # )())())
+    print(duplicate_encode('(( @')) # ))((
     
 
 if __name__ == '__main__':
