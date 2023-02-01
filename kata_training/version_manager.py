@@ -3,8 +3,15 @@ from __future__ import annotations
 class VersionManager:
     def __init__(self, version: str = '0.0.1'):
         self.version = version[:5]
+        self.prev_version = []
+        temporary_version = self.version.split('.')
+
         if version == '':
             self.version = '0.0.1'
+
+        if len(temporary_version) < 3:
+            while len(temporary_version) < 3:
+                temporary_version.append('0')
         assert any(i.isalpha() for i in self.version.replace('.', '')) != True, 'Error occurred while parsing version!'
 
     def release(self: any) -> str:
@@ -15,6 +22,7 @@ class VersionManager:
         return self
 
     def minor(self: any) -> VersionManager:
+        self.prev_version.append(self.version)
         self.version = self.version[0] + '.' + str(int(self.version[2]) + 1) + '.0'
         return self
 
@@ -29,6 +37,5 @@ class VersionManager:
             raise Exception('Cannot rollback!')
         return self
 
-
-t = VersionManager('1.2.3')
-print(t.release())
+t = VersionManager('1')
+print(t.minor().release())
