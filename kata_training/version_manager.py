@@ -4,14 +4,16 @@ class VersionManager:
     def __init__(self, version: str = '0.0.1'):
         self.version = version[:5]
         self.prev_version = []
-        temporary_version = self.version.split('.')
 
         if version == '':
             self.version = '0.0.1'
 
+        temporary_version = self.version.split('.')
         if len(temporary_version) < 3:
             while len(temporary_version) < 3:
                 temporary_version.append('0')
+            self.version = '.'.join(temporary_version)
+
         assert any(i.isalpha() for i in self.version.replace('.', '')) != True, 'Error occurred while parsing version!'
 
     def release(self: any) -> str:
