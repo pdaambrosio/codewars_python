@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+# "It's a class that manages version numbers."
+# 
+# The class constructor takes a version string as an argument. The version string is in the format
+# "major.minor.patch" (e.g. "3.1.7"). If no version string is provided, the default version is "0.0.1"
 class VersionManager:
     def __init__(self, version: str = '0.0.1') -> None:
         self.previous_version = []
@@ -32,8 +36,22 @@ class VersionManager:
         return self
 
 
-t1 = VersionManager('1.2.3')
-print(t1.major().minor().patch().release())
+def main() -> None:
+    version_manager = VersionManager("1.2.3")
+    print(version_manager.release())  # "1.2.3"
+    version_manager.major()
+    print(version_manager.release())  # "2.0.0"
+    version_manager.minor()
+    print(version_manager.release())  # "2.1.0"
+    version_manager.patch()
+    print(version_manager.release())  # "2.1.1"
+    version_manager.rollback()
+    print(version_manager.release())  # "2.1.0"
+    version_manager.rollback()
+    print(version_manager.release())  # "2.0.0"
+    version_manager.rollback()
+    print(version_manager.release())  # "1.2.3"
+    
 
-t2 = VersionManager('a.b.c')
-print(t2.major().rollback().release())
+if __name__ == "__main__":
+    main()
