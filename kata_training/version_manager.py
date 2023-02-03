@@ -1,46 +1,39 @@
 from __future__ import annotations
 
 class VersionManager:
-    def __init__(self, version: str = '0.0.1'):
-        self.version = version[:5]
-        self.prev_version = []
+    def __init__(self, version: str = '0.0.1') -> None:
+        self.previous_version = []
+        self.version = version
+        test_version: list[str] = ((version or "0.0.1") + ".0.0").split('.')[:3]
+        assert all(i.isdigit() for i in test_version), "Error occured while parsing version!"
+        self.major_version, self.minor_version, self.patch_version = map(int, test_version)
 
-        if version == '':
-            self.version = '0.0.1'
+    def release(self) -> str:
+        return f"{self.major_version}.{self.minor_version}.{self.patch_version}"
 
-        temporary_version = self.version.split('.')
-        if len(temporary_version) < 3:
-            while len(temporary_version) < 3:
-                temporary_version.append('0')
-            self.version = '.'.join(temporary_version)
-
-        assert any(i.isalpha() for i in self.version.replace('.', '')) != True, 'Error occured while parsing version!'
-
-    def release(self: any) -> str:
-        return self.version
-
-    def major(self: any) -> VersionManager:
-        self.prev_version.append(self.version)
-        self.version = str(int(self.version[0]) + 1) + '.0.0'
+    def major(self) -> VersionManager:
+        self.previous_version.append((self.major_version, self.minor_version, self.patch_version))
+        self.major_version, self.minor_version, self.patch_version = self.major_version + 1, 0, 0
         return self
 
-    def minor(self: any) -> VersionManager:
-        self.prev_version.append(self.version)
-        self.version = self.version[0] + '.' + str(int(self.version[2]) + 1) + '.0'
+    def minor(self) -> VersionManager:
+        self.previous_version.append((self.major_version, self.minor_version, self.patch_version))
+        self.minor_version, self.patch_version = self.minor_version + 1, 0
         return self
 
-    def patch(self: any) -> VersionManager:
-        self.prev_version.append(self.version)
-        self.version = self.version[0] + '.' + self.version[2] + '.' + str(int(self.version[4]) + 1)
+    def patch(self) -> VersionManager:
+        self.previous_version.append((self.major_version, self.minor_version, self.patch_version))
+        self.patch_version += 1
         return self
 
-    def rollback(self: any) -> VersionManager:
-        if len(self.prev_version) > 0:
-            self.version = self.prev_version.pop()
-        else:
-            raise Exception('Cannot rollback!')
+    def rollback(self) -> VersionManager:
+        assert self.previous_version, "Cannot rollback!"
+        self.major_version, self.minor_version, self.patch_version = self.previous_version.pop()
         return self
 
-t = VersionManager('a.b.c')
-print(t.major().rollback().release())
 
+t1 = VersionManager('1.2.3')
+print(t1.major().minor().patch().release())
+
+t2 = VersionManager('a.b.c')
+print(t2.major().rollback().release())
