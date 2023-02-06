@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+# "A Person has a name and can greet another person."
+# 
+# The first line of the class definition is the class header. It consists of the keyword class
+# followed by the name of the class (Person) and a colon
 class Person:
     def __init__(self, name: str) -> None:
         self.name = name
