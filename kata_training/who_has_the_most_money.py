@@ -8,8 +8,9 @@ class Student:
         self.fives = fives
         self.tens = tens
         self.twenties = twenties
-        
-    def most_money(self, students: list) -> str:
+    
+    @staticmethod    
+    def most_money(students: list) -> str:
         """
         `max_students = [i.name for i in students if total(i) == max_total]`
         
