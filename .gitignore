@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Insync backup files
+__insync__
+*.insyncdl
